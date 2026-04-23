@@ -16,7 +16,7 @@
   <style>
     :root {
       --bg: #efe8d8;
-      --bg-deep: #e6dcc5;
+      --bg-deep: #e9e0cc;
       --ink: #1b1a16;
       --ink-soft: #433f36;
       --muted: #83796a;
@@ -29,6 +29,9 @@
       --script: "Italianno", "Snell Roundhand", cursive;
       --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+      --gap: clamp(28px, 4vw, 40px);
+      --gap-lg: clamp(40px, 6vw, 64px);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -50,37 +53,20 @@
       transition: border-color 160ms ease, color 160ms ease;
     }
     a:hover { border-color: var(--accent); color: var(--accent); }
+    p { margin: 0; }
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .page + .page {
-      border-top: 1px solid var(--rule);
-      background: var(--bg-deep);
-    }
+    .page + .page { background: var(--bg-deep); border-top: 1px solid var(--rule); }
 
     .wrap {
-      width: 100%;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: clamp(24px, 3vw, 36px) clamp(20px, 5vw, 56px);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+      padding: clamp(28px, 4vw, 48px) clamp(20px, 5vw, 48px);
     }
 
-    .mono {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
     .kicker {
       font-family: var(--mono);
       font-size: 11px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
       display: inline-block;
@@ -97,110 +83,133 @@
       color: var(--ink-soft);
       font-family: var(--mono);
       font-size: 11px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-    .nav a { border: 0; color: var(--ink-soft); }
-    .nav a:hover { color: var(--accent); }
 
-    .page1-body {
-      flex: 1;
+    .intro {
+      padding: var(--gap-lg) 0 var(--gap);
       display: grid;
-      grid-template-columns: 1fr;
-      gap: clamp(32px, 5vw, 56px);
-      align-items: start;
-      padding: clamp(32px, 5vw, 56px) 0 clamp(24px, 3vw, 32px);
+      gap: clamp(10px, 1.5vw, 14px);
     }
-    @media (min-width: 900px) {
-      .page1-body { grid-template-columns: 1.15fr 1fr; }
-    }
-
-    .hero-kicker { margin-bottom: clamp(16px, 2vw, 20px); }
-
     .hero-title {
       font-family: var(--serif);
       font-weight: 400;
-      font-size: clamp(34px, 4.8vw, 62px);
+      font-size: clamp(36px, 5vw, 64px);
       line-height: 1;
       letter-spacing: -0.02em;
       margin: 0;
     }
-    .hero-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
+    .hero-title em { font-style: italic; color: var(--accent); }
     .signature {
       font-family: var(--script);
-      font-size: clamp(26px, 3vw, 38px);
+      font-size: clamp(28px, 3.2vw, 40px);
       line-height: 1;
       color: var(--accent);
-      margin: clamp(6px, 1vw, 10px) 0 clamp(18px, 2.5vw, 24px);
-      letter-spacing: 0.01em;
-    }
-
-    .hero-lead {
-      max-width: 54ch;
-      font-size: clamp(14px, 1.15vw, 16px);
-      line-height: 1.6;
-      color: var(--ink-soft);
       margin: 0;
     }
-
-    .hero-side {
-      display: grid;
-      gap: 0;
-      padding-left: 0;
+    .hero-lead {
+      max-width: 60ch;
+      margin-top: clamp(6px, 1vw, 10px);
+      font-size: clamp(15px, 1.2vw, 17px);
+      line-height: 1.6;
+      color: var(--ink-soft);
     }
-    @media (min-width: 900px) {
-      .hero-side { border-left: 1px solid var(--rule); padding-left: clamp(24px, 3vw, 40px); }
-    }
-    .hero-side .kicker { margin-bottom: clamp(12px, 1.5vw, 16px); }
 
-    .skill-row {
-      display: grid;
-      grid-template-columns: 72px 1fr;
+    .block {
+      padding: var(--gap) 0;
+      border-top: 1px solid var(--rule);
+    }
+    .block-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
       gap: 16px;
-      padding: 10px 0;
+      margin-bottom: clamp(18px, 2.5vw, 24px);
+    }
+    .block-head .title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(22px, 2.8vw, 30px);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      margin: 0;
+    }
+    .block-head .title em {
+      font-family: var(--script);
+      font-style: normal;
+      font-size: 1.25em;
+      line-height: 0.6;
+      vertical-align: -0.08em;
+      color: var(--accent);
+      margin: 0 4px;
+    }
+    .block-head .meta {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media (min-width: 760px) {
+      .stack { grid-template-columns: repeat(2, 1fr); column-gap: 48px; }
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      padding: 12px 0;
       border-top: 1px solid var(--rule);
       align-items: baseline;
     }
-    .skill-row:first-of-type { border-top: 0; padding-top: 0; }
-    .skill-row:last-of-type { padding-bottom: 0; }
-    .skill-key {
+    .row:first-child,
+    .stack > .row:nth-child(2) { border-top: 0; }
+    @media (max-width: 759px) {
+      .stack > .row:nth-child(2) { border-top: 1px solid var(--rule); }
+    }
+    .row-key {
       font-family: var(--mono);
       font-size: 10px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ochre);
     }
-    .skill-val {
+    .row-val {
       font-family: var(--serif);
       font-size: clamp(14px, 1.15vw, 16px);
       line-height: 1.5;
       color: var(--ink);
     }
+    .row-val b { font-weight: 500; color: var(--accent); font-style: italic; }
 
     .stats {
       display: grid;
       grid-template-columns: 1fr;
       gap: 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      margin-top: clamp(20px, 3vw, 28px);
     }
-    @media (min-width: 700px) {
+    @media (min-width: 720px) {
       .stats { grid-template-columns: repeat(3, 1fr); }
     }
     .stat {
-      padding: clamp(14px, 2vw, 18px) 0;
+      padding: 14px 0;
       border-top: 1px solid var(--rule);
     }
-    .stat:first-child { border-top: 0; }
-    @media (min-width: 700px) {
-      .stat { border-top: 0; border-left: 1px solid var(--rule); padding-left: clamp(14px, 2vw, 20px); padding-right: clamp(14px, 2vw, 20px); }
-      .stat:first-child { border-left: 0; padding-left: 0; }
-      .stat:last-child { padding-right: 0; }
+    .stats > .stat:first-child { border-top: 0; }
+    @media (min-width: 720px) {
+      .stat {
+        border-top: 0;
+        padding: 4px clamp(14px, 2vw, 24px);
+        border-left: 1px solid var(--rule);
+      }
+      .stats > .stat:first-child { border-left: 0; padding-left: 0; }
+      .stats > .stat:last-child { padding-right: 0; }
     }
     .stat-label {
       font-family: var(--mono);
@@ -208,19 +217,19 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ochre);
-      margin: 0 0 6px;
+      margin-bottom: 6px;
     }
     .stat-value {
       font-family: var(--serif);
-      font-size: clamp(18px, 2vw, 24px);
-      line-height: 1.2;
+      font-size: clamp(17px, 1.8vw, 21px);
+      line-height: 1.25;
       color: var(--ink);
-      margin: 0;
     }
     .stat-value em { font-style: italic; color: var(--accent); }
 
     .page-foot {
-      padding-top: clamp(16px, 2.5vw, 24px);
+      padding-top: clamp(18px, 2.5vw, 24px);
+      margin-top: var(--gap);
       border-top: 1px solid var(--rule);
       display: flex;
       justify-content: space-between;
@@ -228,77 +237,42 @@
       flex-wrap: wrap;
       font-family: var(--mono);
       font-size: 11px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       color: var(--muted);
       text-transform: uppercase;
     }
     .page-foot a { color: var(--ink); border-bottom-color: var(--rule); }
-    .page-foot a:hover { border-bottom-color: var(--accent); }
-
-    .page2-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: clamp(32px, 5vw, 56px) 0 clamp(24px, 3vw, 32px);
-      gap: clamp(28px, 4vw, 44px);
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 6px;
-      align-items: baseline;
-    }
-    @media (min-width: 760px) {
-      .section-head {
-        grid-template-columns: 1fr auto;
-        gap: 24px;
-      }
-    }
-    .section-title {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.05;
-      letter-spacing: -0.015em;
-      margin: 4px 0 0;
-    }
-    .section-title em {
-      font-family: var(--script);
-      font-style: normal;
-      font-size: 1.25em;
-      line-height: 0.6;
-      vertical-align: -0.08em;
-      color: var(--accent);
-      font-weight: 400;
-      margin: 0 4px;
-    }
 
     .work {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 0;
     }
     @media (min-width: 860px) {
-      .work { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+      .work { grid-template-columns: repeat(3, 1fr); column-gap: 32px; }
     }
     .project {
       display: flex;
       flex-direction: column;
-      padding-top: 16px;
+      padding: 18px 0;
       border-top: 1px solid var(--rule);
+    }
+    @media (min-width: 860px) {
+      .work > .project:nth-child(1),
+      .work > .project:nth-child(2),
+      .work > .project:nth-child(3) { border-top: 1px solid var(--rule); padding: 18px 0 0; }
     }
     .project-num {
       font-family: var(--mono);
       font-size: 10px;
       color: var(--fresco);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       margin-bottom: 10px;
     }
     .project-title {
       font-family: var(--serif);
       font-weight: 400;
-      font-size: clamp(19px, 1.8vw, 22px);
+      font-size: clamp(18px, 1.8vw, 21px);
       line-height: 1.2;
       letter-spacing: -0.01em;
       margin: 0 0 10px;
@@ -327,25 +301,21 @@
       padding: 2px 8px;
       border: 1px solid var(--rule);
       border-radius: 999px;
-      background: color-mix(in srgb, var(--bg) 80%, transparent);
     }
-    .project p {
-      margin: 0 0 14px;
+    .project p.desc {
       color: var(--ink-soft);
       font-size: 13.5px;
       line-height: 1.55;
+      margin: 0 0 12px;
     }
     .project-link {
       margin-top: auto;
       font-family: var(--mono);
       font-size: 11px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
       border-bottom: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       width: fit-content;
     }
     .project-link span { border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
@@ -355,44 +325,18 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 32px;
-      padding-top: clamp(24px, 3vw, 32px);
-      border-top: 1px solid var(--rule);
     }
     @media (min-width: 860px) {
       .close { grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: start; }
     }
 
-    .stack-row {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 16px;
-      padding: 10px 0;
-      border-top: 1px solid var(--rule);
-      align-items: baseline;
-    }
-    .stack-row:first-child { border-top: 0; padding-top: 0; }
-    .stack-key {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ochre);
-    }
-    .stack-val {
-      font-family: var(--serif);
-      font-size: clamp(14px, 1.15vw, 16px);
-      line-height: 1.5;
-      color: var(--ink);
-    }
-    .stack-val b { font-weight: 500; color: var(--accent); font-style: italic; }
-
     .contact-title {
       font-family: var(--serif);
       font-weight: 400;
-      font-size: clamp(26px, 3vw, 36px);
+      font-size: clamp(22px, 2.8vw, 30px);
       line-height: 1.05;
       letter-spacing: -0.015em;
-      margin: 10px 0 18px;
+      margin: 10px 0 16px;
     }
     .contact-title em {
       font-family: var(--script);
@@ -404,7 +348,7 @@
     }
     .contact-links {
       display: grid;
-      gap: 8px;
+      gap: 0;
       font-family: var(--mono);
       font-size: 12.5px;
     }
@@ -413,11 +357,11 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 14px;
-      padding: 8px 0;
+      padding: 10px 0;
       border-bottom: 1px solid var(--rule);
       color: var(--ink);
     }
-    .contact-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .contact-links a:first-child { border-top: 1px solid var(--rule); }
     .contact-links .svc {
       color: var(--muted);
       font-size: 10px;
@@ -433,11 +377,12 @@
     }
 
     .colophon {
-      margin-top: auto;
-      padding-top: clamp(20px, 3vw, 28px);
+      margin-top: var(--gap);
+      padding-top: clamp(18px, 2.5vw, 24px);
       border-top: 1px solid var(--rule);
       display: flex;
       justify-content: space-between;
+      align-items: baseline;
       flex-wrap: wrap;
       gap: 12px;
       font-family: var(--mono);
@@ -467,53 +412,62 @@
         <span>I / II</span>
       </nav>
 
-      <div class="page1-body">
-        <div>
-          <span class="kicker hero-kicker">001 / Introduction</span>
-          <h1 class="hero-title">Rudransh Garewal<em>.</em></h1>
-          <p class="signature">— blockchain developer</p>
-          <p class="hero-lead">
-            I write smart contracts — mostly across EVM, Solana, Stellar and
-            Avalanche, usually somewhere in DePIN, cross-chain swaps, or DeFi
-            primitives. Based in Chennai, shipping quietly.
-          </p>
-        </div>
+      <header class="intro">
+        <span class="kicker">001 / Introduction</span>
+        <h1 class="hero-title">Rudransh Garewal<em>.</em></h1>
+        <p class="signature">— blockchain developer</p>
+        <p class="hero-lead">
+          I write smart contracts — mostly across EVM, Solana, Stellar and
+          Avalanche, usually somewhere in DePIN, cross-chain swaps, or DeFi
+          primitives. Based in Chennai, shipping quietly.
+        </p>
+      </header>
 
-        <aside class="hero-side">
-          <span class="kicker">002 / Stack</span>
-          <div class="skill-row">
-            <span class="skill-key">Langs</span>
-            <span class="skill-val">Solidity · Rust · Go · TypeScript · Python.</span>
+      <section class="block">
+        <div class="block-head">
+          <h2 class="title">Stack <em>&amp;</em> specialties.</h2>
+          <span class="meta">002 / Stack</span>
+        </div>
+        <div class="stack">
+          <div class="row">
+            <span class="row-key">Langs</span>
+            <span class="row-val">Solidity · Rust · Go · TypeScript · Python.</span>
           </div>
-          <div class="skill-row">
-            <span class="skill-key">Chains</span>
-            <span class="skill-val">Ethereum · Solana · Stellar / Soroban · Avalanche.</span>
+          <div class="row">
+            <span class="row-key">Chains</span>
+            <span class="row-val">Ethereum · Solana · Stellar / Soroban · Avalanche.</span>
           </div>
-          <div class="skill-row">
-            <span class="skill-key">Tools</span>
-            <span class="skill-val">Hardhat, Foundry, Anchor, Ethers, Wagmi, Viem, React, IPFS, Chainlink, The Graph.</span>
+          <div class="row">
+            <span class="row-key">Tools</span>
+            <span class="row-val">Hardhat, Foundry, Anchor, Ethers, Wagmi, Viem, React, IPFS, Chainlink.</span>
           </div>
-          <div class="skill-row">
-            <span class="skill-key">Ideas</span>
-            <span class="skill-val">DeFi · DePIN · AMMs · HTLC · ZK proofs · liquid staking.</span>
+          <div class="row">
+            <span class="row-key">Ideas</span>
+            <span class="row-val">DeFi · DePIN · AMMs · HTLC · ZK · liquid staking.</span>
           </div>
-        </aside>
-      </div>
+        </div>
+      </section>
 
-      <div class="stats">
-        <div class="stat">
-          <p class="stat-label">Hackathon wins</p>
-          <p class="stat-value"><em>$3,000+</em> — Avalanche, Stellar &amp; EVM.</p>
+      <section class="block">
+        <div class="block-head">
+          <h2 class="title">Highlights <em>in</em> brief.</h2>
+          <span class="meta">003 / At a glance</span>
         </div>
-        <div class="stat">
-          <p class="stat-label">Shipped</p>
-          <p class="stat-value">Contracts on <em>6+</em> chains, zero critical vulns.</p>
+        <div class="stats">
+          <div class="stat">
+            <p class="stat-label">Hackathon wins</p>
+            <p class="stat-value"><em>$3,000+</em> — Avalanche, Stellar &amp; EVM.</p>
+          </div>
+          <div class="stat">
+            <p class="stat-label">Shipped</p>
+            <p class="stat-value">Contracts on <em>6+</em> chains, zero critical vulns.</p>
+          </div>
+          <div class="stat">
+            <p class="stat-label">Focus</p>
+            <p class="stat-value">DePIN · cross-chain · liquid staking.</p>
+          </div>
         </div>
-        <div class="stat">
-          <p class="stat-label">Focus</p>
-          <p class="stat-value">DePIN · cross-chain · liquid staking.</p>
-        </div>
-      </div>
+      </section>
 
       <div class="page-foot">
         <span>Chennai, IN</span>
@@ -529,13 +483,11 @@
         <span>II / II</span>
       </nav>
 
-      <div class="page2-body">
-
-        <div class="section-head">
-          <h2 class="section-title">Selected work <em>&amp;</em> protocols.</h2>
-          <span class="kicker">002 / Projects</span>
+      <section class="block" style="border-top: 0; padding-top: var(--gap-lg);">
+        <div class="block-head">
+          <h2 class="title">Selected work <em>&amp;</em> protocols.</h2>
+          <span class="meta">004 / Projects</span>
         </div>
-
         <div class="work">
           <article class="project">
             <div class="project-num">PRJ — 01</div>
@@ -543,7 +495,7 @@
             <div class="tags">
               <span class="tag">Solana</span><span class="tag">Rust</span><span class="tag">Anchor</span>
             </div>
-            <p>Peer-to-peer network for sharing GPU compute and bandwidth. Wrote the Solana programs for resource allocation, staking, and rewards, plus an on-chain proof-of-resource check.</p>
+            <p class="desc">Peer-to-peer network for sharing GPU compute and bandwidth. Wrote the Solana programs for resource allocation, staking, rewards, and an on-chain proof-of-resource check.</p>
             <a class="project-link" href="https://github.com/RudranshG07/gpu-r" target="_blank" rel="noopener"><span>Source →</span></a>
           </article>
 
@@ -553,7 +505,7 @@
             <div class="tags">
               <span class="tag">Solidity</span><span class="tag">Rust</span><span class="tag">Go</span>
             </div>
-            <p>Cross-chain atomic swap between Ethereum, Solana, Avalanche and Stellar. Users state what they want; an intent engine finds a route and settles via HTLC escrow.</p>
+            <p class="desc">Cross-chain atomic swap between Ethereum, Solana, Avalanche and Stellar. Users state what they want; an intent engine finds a route and settles via HTLC escrow.</p>
             <a class="project-link" href="https://github.com/RudranshG07/AI-Intent-Based-Atomic-Swap" target="_blank" rel="noopener"><span>Source →</span></a>
           </article>
 
@@ -563,36 +515,38 @@
             <div class="tags">
               <span class="tag">Stellar</span><span class="tag">Soroban</span><span class="tag">React</span>
             </div>
-            <p>Liquid staking on Soroban: stake XLM, get sXLM. Wrote the validator delegation logic, a basic lending pool, and a small governance flow.</p>
+            <p class="desc">Liquid staking on Soroban: stake XLM, get sXLM. Validator delegation logic, a basic lending pool, and a small governance flow.</p>
             <a class="project-link" href="https://stellofi.vercel.app/" target="_blank" rel="noopener"><span>Live →</span></a>
           </article>
         </div>
+      </section>
 
+      <section class="block">
         <div class="close">
           <div>
-            <span class="kicker">003 / Achievements</span>
+            <span class="kicker">005 / Achievements</span>
             <div style="margin-top: 14px;">
-              <div class="stack-row">
-                <span class="stack-key">01</span>
-                <span class="stack-val"><b>$3,000+</b> in hackathon prizes across Avalanche, Stellar &amp; EVM chains.</span>
+              <div class="row">
+                <span class="row-key">01</span>
+                <span class="row-val"><b>$3,000+</b> in hackathon prizes across Avalanche, Stellar &amp; EVM chains.</span>
               </div>
-              <div class="stack-row">
-                <span class="stack-key">02</span>
-                <span class="stack-val">Deployed smart contracts on <b>6+</b> mainnet / testnet chains — zero critical vulnerabilities.</span>
+              <div class="row">
+                <span class="row-key">02</span>
+                <span class="row-val">Deployed contracts on <b>6+</b> mainnet / testnet chains — zero critical vulns.</span>
               </div>
-              <div class="stack-row">
-                <span class="stack-key">03</span>
-                <span class="stack-val">Active open-source contributor to DeFi &amp; DePIN tooling.</span>
+              <div class="row">
+                <span class="row-key">03</span>
+                <span class="row-val">Active open-source contributor to DeFi &amp; DePIN tooling.</span>
               </div>
-              <div class="stack-row">
-                <span class="stack-key">04</span>
-                <span class="stack-val">Shipped full-stack dApps end-to-end — Solana / Soroban contracts to React frontends.</span>
+              <div class="row">
+                <span class="row-key">04</span>
+                <span class="row-val">Shipped full-stack dApps end-to-end — Soroban contracts to React frontends.</span>
               </div>
             </div>
           </div>
 
           <div id="contact">
-            <span class="kicker">004 / Contact</span>
+            <span class="kicker">006 / Contact</span>
             <h2 class="contact-title">Say hello<em>.</em></h2>
             <div class="contact-links">
               <a href="mailto:shrijeegarewal07@gmail.com">
@@ -618,13 +572,12 @@
             </div>
           </div>
         </div>
+      </section>
 
-        <div class="colophon">
-          <span>© 2026 Rudransh Garewal</span>
-          <span class="sig">Rudransh</span>
-          <span>Newsreader · Italianno · IBM Plex</span>
-        </div>
-
+      <div class="colophon">
+        <span>© 2026 Rudransh Garewal</span>
+        <span class="sig">Rudransh</span>
+        <span>Newsreader · Italianno · IBM Plex</span>
       </div>
     </div>
   </section>
