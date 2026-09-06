@@ -106,7 +106,7 @@ export default function Index() {
       }
       // whichever section sits under the reading line, so short sections (skills)
       // and tall ones (experience) each get their turn regardless of height
-      const line = window.innerHeight * 0.35;
+      const line = window.innerHeight * 0.5;
       let current = nav[0].id;
       let nearest = Infinity;
       for (const x of nav) {
@@ -141,11 +141,11 @@ export default function Index() {
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-300 ${
-            light ? "opacity-[0.10]" : "opacity-[0.70]"
+            light ? "opacity-[0.42]" : "opacity-[0.85]"
           }`}
           style={{ backgroundImage: `url(${bgImage})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/80 to-bg/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/75 to-bg/15" />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-bg/60" />
       </div>
 
@@ -374,7 +374,7 @@ export default function Index() {
           </ul>
 
         </Section>
-        <footer className="border-t border-stroke pb-[26vh] pt-8">
+        <footer className="border-t border-stroke pb-10 pt-8">
           <Meander className="max-w-[120px]" />
           <p className="mt-4 font-mono text-[11px] text-muted">
             © 2026 rudransh garewal · chennai, in
