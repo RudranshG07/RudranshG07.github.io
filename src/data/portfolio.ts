@@ -130,6 +130,6 @@ export const skills = [
   { group: "Languages", items: "Go, Rust, Python, TypeScript, C++, Solidity" },
   { group: "Backend", items: "gRPC, Kafka, REST, PostgreSQL, Redis, Node.js, microservices" },
   { group: "Infrastructure", items: "Docker, Kubernetes, Linux, GitHub Actions, Prometheus, Grafana" },
-  { group: "Embedded", items: "ESP32, embedded Rust, linker scripts" },
+  { group: "Embedded", items: "ESP32, embedded Rust" },
   { group: "Distributed", items: "P2P networking, consensus, Ethereum, Solana, Stellar / Soroban, Bitcoin L2s" },
 ];

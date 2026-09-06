@@ -141,7 +141,7 @@ export default function Index() {
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div
           className={`absolute inset-0 bg-cover bg-center transition-opacity duration-300 ${
-            light ? "opacity-[0.42]" : "opacity-[0.85]"
+            light ? "opacity-[0.49]" : "opacity-[0.81]"
           }`}
           style={{ backgroundImage: `url(${bgImage})` }}
         />
