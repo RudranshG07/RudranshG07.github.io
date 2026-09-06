@@ -1,183 +1,127 @@
-// All copy/data sourced from the original portfolio site.
-
 export const profile = {
   name: "Rudransh Garewal",
-  initials: "RG",
-  location: "Chennai",
-  eyebrow: "PORTFOLIO '26",
-  roles: ["backend", "web3", "protocol", "onchain"],
-  roleSuffix: "developer",
-  description:
-    "i build reliable services, protocols, and onchain products in go and rust. from backend logic to cross-chain execution, i take ideas all the way to production.",
+  location: "Chennai, IN",
   email: "shrijeegarewal07@gmail.com",
-  marquee: "BUILDING ONCHAIN",
+  phone: "+91 93404 99870",
+  resume: "/Rudransh_Garewal.pdf",
+  photo: "/profile-pic.png",
 };
+
+export const tagline = "backend & platform engineering — go, rust, distributed systems";
+
+export const tags = [
+  "go",
+  "rust",
+  "soroban",
+  "grpc",
+  "kafka",
+  "postgres",
+  "kubernetes",
+  "solidity",
+  "embedded rust",
+  "p2p / consensus",
+];
 
 export const socials = [
-  { label: "Twitter", href: "https://x.com/rudyg0722" },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/rudransh-garewal-784492253/",
-  },
-  { label: "GitHub", href: "https://github.com/RudranshG07" },
-  { label: "Email", href: "mailto:shrijeegarewal07@gmail.com" },
+  { label: "github", href: "https://github.com/RudranshG07" },
+  { label: "x", href: "https://x.com/rudyg0722" },
+  { label: "linkedin", href: "https://www.linkedin.com/in/rudransh-garewal-784492253/" },
+  { label: "email", href: "mailto:shrijeegarewal07@gmail.com" },
 ];
 
-export type Project = {
-  title: string;
-  category: string;
-  tags: string[];
-  description: string;
-  href: string;
-  hrefLabel: string;
-  image: string;
-};
-
-export const projects: Project[] = [
+export const summary = [
   {
-    title: "Compute Network",
-    category: "50+ active nodes",
-    tags: ["Rust", "Go", "Anchor"],
-    description:
-      "A peer-to-peer GPU and bandwidth network with onchain resource allocation, staking, rewards, dynamic pricing, and proof-of-resource verification.",
-    href: "https://github.com/RudranshG07/gpu-r",
-    hrefLabel: "Source",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop",
+    text: "Engineering student in Chennai, studying Electronics & Computer Engineering at SRM",
+    tags: [{ label: "SRMIST", href: "https://www.srmist.edu.in/" }],
   },
   {
-    title: "Transaction Router",
-    category: "1K+ requests · ~15s settlement",
-    tags: ["Solidity", "Rust", "Go"],
-    description:
-      "An intent engine that turns plain-language requests into executable routes across Ethereum, Solana, Avalanche, and Stellar.",
-    href: "https://github.com/RudranshG07/AI-Intent-Based-Atomic-Swap",
-    hrefLabel: "Source",
-    image:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80&auto=format&fit=crop",
+    text: "Awarded $15,000 by the Stellar Community Fund to build and ship STELLO, live to 500+ users",
+    tags: [{ label: "STELLO", href: "https://stellofi.com" }],
   },
   {
-    title: "STELLO",
-    category: "500+ users · 30+ proposals",
-    tags: ["Stellar", "Soroban", "React"],
-    description:
-      "A live liquid staking protocol with validator delegation, lending pools, auto-rebalancing yield, and token-weighted governance.",
-    href: "https://stellofi.vercel.app/",
-    hrefLabel: "Live",
-    image:
-      "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80&auto=format&fit=crop",
+    text: "Backend and platform engineering in Go and Rust — settlement paths, retry logic, and accounting that still balances when something fails halfway through",
+    tags: [],
   },
   {
-    title: "Hackathon Builds",
-    category: "$4K+ in prizes",
-    tags: ["EVM", "Stellar", "Stacks"],
-    description:
-      "Award-winning products across EVM chains, Stellar, Stacks, and Ledger, shipped from backend logic to live demos.",
-    href: "https://github.com/RudranshG07",
-    hrefLabel: "GitHub",
-    image:
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&q=80&auto=format&fit=crop",
+    text: "Building developer tooling and build infrastructure for robotics",
+    tags: [{ label: "Pyros", href: "https://www.getpyros.com/" }],
+  },
+  {
+    text: "9 hackathon wins across EVM, BTC L2, Solana, Stellar and Ledger — $4,500+ in prizes",
+    tags: [],
+  },
+  {
+    text: "Member at Satoshi Lab, the cybersecurity and blockchain group inside Next Tech Lab",
+    tags: [],
   },
 ];
 
-export type Achievement = {
-  metric: string;
-  title: string;
-  desc: string;
-};
-
-export const achievements: Achievement[] = [
+export const projects = [
   {
-    metric: "$4K+",
-    title: "In hackathon prizes",
-    desc: "Across EVM, Stellar, Stacks, and Ledger builds.",
+    name: "STELLO",
+    note: "backed by Stellar Community Fund",
+    description: "Liquid staking on Stellar — sXLM, validator delegation and lending pools",
+    href: "https://stellofi.com",
   },
   {
-    metric: "1K+",
-    title: "Intent requests routed",
-    desc: "Across four chains with roughly 15-second settlement.",
+    name: "Scry",
+    note: "",
+    description: "Prediction markets settled by live camera feeds and computer vision",
+    href: "https://github.com/RudranshG07/scry",
   },
   {
-    metric: "50+",
-    title: "Active network nodes",
-    desc: "Sharing GPU compute and bandwidth peer to peer.",
+    name: "Pyros",
+    note: "1,000+ npm downloads",
+    description: "Build infrastructure and backend services for a robotics platform",
+    href: "https://www.getpyros.com/",
   },
   {
-    metric: "0",
-    title: "Critical vulnerabilities",
-    desc: "Across everything deployed, so far.",
+    name: "Hardware Wallet",
+    note: "open source",
+    description: "Air-gapped ESP32 signer written in Rust, C and assembly",
+    href: "https://github.com/RudranshG07/hardware-wallet",
   },
 ];
 
-export type SkillItem = { name: string; slug?: string };
-export type SkillGroup = { title: string; items: SkillItem[]; image: string };
-
-const u = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?w=700&q=70&auto=format&fit=crop`;
-
-export const skillGroups: SkillGroup[] = [
+export const experience = [
   {
-    title: "Languages",
-    items: [
-      { name: "Go", slug: "go" },
-      { name: "Rust", slug: "rust" },
-      { name: "Solidity", slug: "solidity" },
-      { name: "TypeScript", slug: "typescript" },
+    role: "Grant Recipient & Protocol Engineer",
+    org: "Stellar Community Fund",
+    href: "https://communityfund.stellar.org/",
+    period: "Apr 2026 — Present",
+    location: "Remote",
+    bullets: [
+      "Awarded $15,000 through SCF's public review and community vote to build and ship STELLO, live to 500+ early users: XLM staking against sXLM, validator delegation, lending pools, an auto-rebalancing yield strategy and token-weighted governance.",
+      "Wrote the Soroban contracts in Rust, including the settlement path that keeps stake accounting consistent when a delegation or rebalance fails partway through.",
     ],
-    image: u("1555066931-4365d14bab8c"),
   },
   {
-    title: "DevOps",
-    items: [
-      { name: "Docker", slug: "docker" },
-      { name: "Kubernetes", slug: "kubernetes" },
-      { name: "Linux", slug: "linux" },
-      { name: "CI/CD" },
+    role: "Member",
+    org: "Next Tech Lab — Satoshi Lab",
+    href: "https://nextech.io/",
+    period: "Apr 2025 — Present",
+    location: "SRMIST",
+    bullets: [
+      "Cybersecurity and blockchain group within Next Tech Lab, the first Indian student-led winner of the QS Reimagine Education Award.",
     ],
-    image: u("1639815188546-c43c240ff4df"),
-  },
-  {
-    title: "Chains",
-    items: [
-      { name: "Ethereum", slug: "ethereum" },
-      { name: "Solana", slug: "solana" },
-      { name: "Stellar / Soroban", slug: "stellar" },
-      { name: "Bitcoin L2s", slug: "bitcoin" },
-    ],
-    image: u("1593720213428-28a5b9e94613"),
-  },
-  {
-    title: "Protocol tooling",
-    items: [
-      { name: "Anchor" },
-      { name: "Foundry" },
-      { name: "Hardhat" },
-      { name: "Ethers.js" },
-    ],
-    image: u("1581276879432-15e50529f34b"),
-  },
-  {
-    title: "Networking",
-    items: [
-      { name: "Consensus" },
-      { name: "P2P networking" },
-      { name: "Fault-tolerant state" },
-      { name: "Resource verification" },
-    ],
-    image: u("1558494949-ef010cbdcc31"),
-  },
-  {
-    title: "Focus areas",
-    items: [
-      { name: "DeFi" },
-      { name: "DePIN" },
-      { name: "Cross-chain execution" },
-      { name: "Liquid staking" },
-      { name: "Backend services" },
-    ],
-    image: u("1640340434855-6084b1f4901c"),
   },
 ];
 
-export const HLS_SRC =
-  "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
+export const achievements = [
+  {
+    title: "9 hackathon wins across EVM, BTC L2, Solana, Stellar and Ledger",
+    prize: "$4,500+",
+  },
+  {
+    title: "Stellar Community Fund grant to build and ship STELLO",
+    prize: "$15,000",
+  },
+];
+
+export const skills = [
+  { group: "Languages", items: "Go, Rust, Python, TypeScript, C++, Solidity" },
+  { group: "Backend", items: "gRPC, Kafka, REST, PostgreSQL, Redis, Node.js, microservices" },
+  { group: "Infrastructure", items: "Docker, Kubernetes, Linux, GitHub Actions, Prometheus, Grafana" },
+  { group: "Embedded", items: "ESP32, embedded Rust, linker scripts" },
+  { group: "Distributed", items: "P2P networking, consensus, Ethereum, Solana, Stellar / Soroban, Bitcoin L2s" },
+];
