@@ -4,19 +4,23 @@
 
 @layer base {
   :root {
-    --bg: 0 0% 5%;
-    --surface: 0 0% 9%;
-    --text: 0 0% 95%;
-    --muted: 0 0% 55%;
-    --stroke: 0 0% 15%;
+    --bg: 150 7% 6%;
+    --surface: 150 6% 10%;
+    --text: 150 8% 92%;
+    --muted: 150 5% 52%;
+    --stroke: 150 6% 16%;
+    --accent: 142 45% 58%;
+    --accent-soft: 145 22% 14%;
   }
 
   :root.light {
-    --bg: 40 20% 98%;
-    --surface: 40 12% 95%;
-    --text: 0 0% 10%;
-    --muted: 0 0% 42%;
-    --stroke: 0 0% 88%;
+    --bg: 140 22% 97%;
+    --surface: 145 18% 93%;
+    --text: 150 12% 12%;
+    --muted: 150 7% 40%;
+    --stroke: 145 12% 86%;
+    --accent: 150 55% 27%;
+    --accent-soft: 145 40% 90%;
   }
 
   html {
@@ -29,7 +33,7 @@
   }
 
   ::selection {
-    background: hsl(var(--text));
+    background: hsl(var(--accent));
     color: hsl(var(--bg));
   }
 }

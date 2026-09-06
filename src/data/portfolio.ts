@@ -7,19 +7,23 @@ export const profile = {
   photo: "/profile-pic.png",
 };
 
-export const tagline = "backend & platform engineering — go, rust, distributed systems";
+export const tagline = "backend & platform engineering";
 
 export const tags = [
   "go",
   "rust",
   "soroban",
+  "distributed systems",
   "grpc",
   "kafka",
-  "postgres",
   "kubernetes",
   "solidity",
   "embedded rust",
-  "p2p / consensus",
+];
+
+export const about = [
+  "studying electronics & computer engineering at srm, based in chennai. most of my work is distributed systems and blockchain infrastructure \u2014 including a liquid staking protocol funded by a stellar community fund grant and running for 500+ users.",
+  "i also build closer to the metal: an air-gapped esp32 signer in rust, c and assembly, and build tooling for a robotics platform.",
 ];
 
 export const socials = [
