@@ -17,8 +17,9 @@ const bgImage = "/platofire.jpg";
 const nav = [
   { label: "about", id: "about", n: "α" },
   { label: "projects", id: "projects", n: "β" },
-  { label: "experience", id: "experience", n: "γ" },
-  { label: "wins", id: "wins", n: "δ" },
+  { label: "skills", id: "skills", n: "γ" },
+  { label: "experience", id: "experience", n: "δ" },
+  { label: "wins", id: "wins", n: "ε" },
 ];
 
 const icons: Record<string, string> = {
@@ -296,7 +297,20 @@ export default function Index() {
           </ul>
         </Section>
 
-        <Section id="experience" n="γ" title="experience">
+        <Section id="skills" n="γ" title="skills">
+          <div className="space-y-2.5">
+            {skills.map((s) => (
+              <div key={s.group} className="flex flex-col gap-0.5 sm:flex-row sm:gap-5">
+                <span className="w-28 shrink-0 font-mono text-[11px] uppercase tracking-wide text-muted">
+                  {s.group}
+                </span>
+                <span className="text-sm">{s.items}</span>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="experience" n="δ" title="experience">
           <ol className="ml-1 border-l border-stroke">
             {experience.map((e, i) => (
               <li key={e.org} className="relative pb-9 pl-7 last:pb-0">
@@ -332,7 +346,7 @@ export default function Index() {
         </Section>
 
 
-        <Section id="wins" n="δ" title="wins">
+        <Section id="wins" n="ε" title="wins">
           <ul className="space-y-0">
             {achievements.map((a) => (
               <li
@@ -346,16 +360,6 @@ export default function Index() {
             ))}
           </ul>
 
-          <div className="mt-9 space-y-2.5">
-            {skills.map((s) => (
-              <div key={s.group} className="flex flex-col gap-0.5 sm:flex-row sm:gap-5">
-                <span className="w-28 shrink-0 font-mono text-[11px] uppercase tracking-wide text-muted">
-                  {s.group}
-                </span>
-                <span className="text-sm">{s.items}</span>
-              </div>
-            ))}
-          </div>
         </Section>
         <footer className="border-t border-stroke pt-5 font-mono text-[10px] text-muted lg:hidden">
           © 2026 rudransh garewal
