@@ -12,11 +12,13 @@ import {
   skills,
 } from "../data/portfolio";
 
+const bgImage = "/platofire.jpg";
+
 const nav = [
-  { label: "about", id: "about", n: "01" },
-  { label: "experience", id: "experience", n: "02" },
-  { label: "projects", id: "projects", n: "03" },
-  { label: "wins", id: "wins", n: "04" },
+  { label: "about", id: "about", n: "α" },
+  { label: "projects", id: "projects", n: "β" },
+  { label: "experience", id: "experience", n: "γ" },
+  { label: "wins", id: "wins", n: "δ" },
 ];
 
 const icons: Record<string, string> = {
@@ -37,6 +39,29 @@ function Icon({ name }: { name: string }) {
   );
 }
 
+function Meander({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={`h-[10px] w-full text-accent/45 ${className}`}
+      viewBox="0 0 100 10"
+      preserveAspectRatio="none"
+      aria-hidden
+    >
+      <defs>
+        <pattern id="meander" width="10" height="10" patternUnits="userSpaceOnUse">
+          <path
+            d="M1,9 V1 H9 V7 H4 V4 H7"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+        </pattern>
+      </defs>
+      <rect width="100" height="10" fill="url(#meander)" />
+    </svg>
+  );
+}
+
 function Section({
   id,
   n,
@@ -51,7 +76,7 @@ function Section({
   return (
     <section id={id} className="scroll-mt-14">
       <div className="mb-6 flex items-baseline gap-3">
-        <span className="font-mono text-[11px] text-accent">{n}</span>
+        <span className="font-serif text-[17px] leading-none text-accent">{n}</span>
         <h2 className="font-serif text-[30px] font-normal leading-none">{title}</h2>
         <span className="h-px flex-1 translate-y-[-4px] bg-stroke" />
       </div>
@@ -69,24 +94,47 @@ export default function Index() {
   }, [light]);
 
   useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const vis = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        if (vis) setActive(vis.target.id);
-      },
-      { rootMargin: "-10% 0px -70% 0px" }
-    );
-    nav.forEach((x) => {
-      const el = document.getElementById(x.id);
-      if (el) obs.observe(el);
-    });
-    return () => obs.disconnect();
+    const onScroll = () => {
+      // at the bottom of the page the last section is what you're looking at,
+      // even when it's too short to cross the middle of the viewport
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 120;
+      if (atBottom) {
+        setActive(nav[nav.length - 1].id);
+        return;
+      }
+      const line = window.innerHeight * 0.3;
+      let current = nav[0].id;
+      for (const x of nav) {
+        const el = document.getElementById(x.id);
+        if (el && el.getBoundingClientRect().top <= line) current = x.id;
+      }
+      setActive(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-12 lg:flex-row lg:gap-16 lg:py-16">
+    <>
+      {/* background */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-300 ${
+            light ? "opacity-[0.10]" : "opacity-[0.70]"
+          }`}
+          style={{ backgroundImage: `url(${bgImage})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/80 to-bg/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/20 to-bg/60" />
+      </div>
+
+    <div className="relative mx-auto flex max-w-5xl flex-col gap-10 px-6 py-12 lg:flex-row lg:gap-16 lg:py-16">
       {/* sidebar */}
       <aside className="lg:sticky lg:top-16 lg:h-[calc(100vh-8rem)] lg:w-[196px] lg:shrink-0">
         <div className="flex h-full flex-col">
@@ -104,6 +152,8 @@ export default function Index() {
                 <p className="mt-2 text-[13px] leading-snug text-muted">{tagline}</p>
               </div>
             </div>
+
+            <Meander className="mt-4 max-w-[150px]" />
 
             <p className="mt-3 font-mono text-[11px] text-muted">
               <span className="mr-1.5 inline-block h-1.5 w-1.5 translate-y-[-1px] rounded-full bg-accent" />
@@ -163,18 +213,17 @@ export default function Index() {
               ))}
             </div>
 
-            <p className="mt-4 font-mono text-[10px] text-muted">© 2026</p>
+            <p className="mt-4 hidden font-mono text-[10px] text-muted lg:block">© 2026</p>
           </div>
         </div>
       </aside>
 
       {/* content */}
       <main className="min-w-0 flex-1 space-y-16">
-        <Section id="about" n="01" title="about">
+        <Section id="about" n="α" title="about">
           <p className="font-serif text-[21px] leading-snug">
-            hey! i'm rudransh — i write{" "}
-            <span className="text-accent">go</span> and <span className="text-accent">rust</span>,
-            and i'm drawn to systems that have to stay correct when something fails halfway through.
+            hey! i'm rudransh. i write <span className="text-accent">go</span>, and i'm drawn to
+            systems that have to stay correct when something fails halfway through.
           </p>
 
           <div className="mt-4 space-y-3 text-[15px] leading-relaxed text-muted">
@@ -217,7 +266,37 @@ export default function Index() {
           </div>
         </Section>
 
-        <Section id="experience" n="02" title="experience">
+        <Section id="projects" n="β" title="projects">
+          <ul className="space-y-6">
+            {projects.map((p) => (
+              <li key={p.name} className="flex gap-4">
+                <img
+                  src={p.logo}
+                  alt=""
+                  className="mt-0.5 h-10 w-10 shrink-0 rounded-xl border border-stroke object-cover"
+                />
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-x-2">
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-[15px] font-medium underline decoration-stroke underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+                    >
+                      {p.name} <span className="text-xs">↗</span>
+                    </a>
+                    {p.note && (
+                      <span className="text-[13px] text-muted">({p.note})</span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-[14.5px] leading-relaxed text-muted">{p.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section id="experience" n="γ" title="experience">
           <ol className="ml-1 border-l border-stroke">
             {experience.map((e, i) => (
               <li key={e.org} className="relative pb-9 pl-7 last:pb-0">
@@ -242,7 +321,7 @@ export default function Index() {
                 <ul className="mt-2.5 space-y-1.5">
                   {e.bullets.map((b) => (
                     <li key={b} className="flex gap-2.5 text-sm leading-relaxed text-muted">
-                      <span className="select-none text-stroke">—</span>
+                      <span className="mt-[0.6em] h-[3px] w-[3px] shrink-0 rounded-full bg-stroke" />
                       <span>{b}</span>
                     </li>
                   ))}
@@ -252,32 +331,8 @@ export default function Index() {
           </ol>
         </Section>
 
-        <Section id="projects" n="03" title="projects">
-          <div className="grid gap-3 sm:grid-cols-2">
-            {projects.map((p) => (
-              <a
-                key={p.name}
-                href={p.href}
-                target="_blank"
-                rel="noreferrer"
-                className="group rounded-xl border border-stroke bg-surface/40 p-4 transition-colors hover:border-accent/60"
-              >
-                <div className="flex items-baseline justify-between gap-2">
-                  <span className="text-[15px] font-medium">{p.name}</span>
-                  <span className="font-mono text-xs text-muted transition-colors group-hover:text-accent">
-                    ↗
-                  </span>
-                </div>
-                {p.note && (
-                  <p className="mt-1 font-mono text-[11px] text-accent">{p.note}</p>
-                )}
-                <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{p.description}</p>
-              </a>
-            ))}
-          </div>
-        </Section>
 
-        <Section id="wins" n="04" title="wins">
+        <Section id="wins" n="δ" title="wins">
           <ul className="space-y-0">
             {achievements.map((a) => (
               <li
@@ -302,7 +357,11 @@ export default function Index() {
             ))}
           </div>
         </Section>
+        <footer className="border-t border-stroke pt-5 font-mono text-[10px] text-muted lg:hidden">
+          © 2026 rudransh garewal
+        </footer>
       </main>
     </div>
+    </>
   );
 }
