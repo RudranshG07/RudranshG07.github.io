@@ -99,16 +99,30 @@ export default function Index() {
       // at the bottom of the page the last section is what you're looking at,
       // even when it's too short to cross the middle of the viewport
       const atBottom =
-        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 120;
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 24;
       if (atBottom) {
         setActive(nav[nav.length - 1].id);
         return;
       }
-      const line = window.innerHeight * 0.3;
+      // whichever section sits under the reading line, so short sections (skills)
+      // and tall ones (experience) each get their turn regardless of height
+      const line = window.innerHeight * 0.35;
       let current = nav[0].id;
+      let nearest = Infinity;
       for (const x of nav) {
         const el = document.getElementById(x.id);
-        if (el && el.getBoundingClientRect().top <= line) current = x.id;
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= line && r.bottom >= line) {
+          current = x.id;
+          nearest = 0;
+          break;
+        }
+        const gap = r.top > line ? r.top - line : line - r.bottom;
+        if (gap < nearest) {
+          nearest = gap;
+          current = x.id;
+        }
       }
       setActive(current);
     };
@@ -214,7 +228,6 @@ export default function Index() {
               ))}
             </div>
 
-            <p className="mt-4 hidden font-mono text-[10px] text-muted lg:block">© 2026</p>
           </div>
         </div>
       </aside>
@@ -361,8 +374,11 @@ export default function Index() {
           </ul>
 
         </Section>
-        <footer className="border-t border-stroke pt-5 font-mono text-[10px] text-muted lg:hidden">
-          © 2026 rudransh garewal
+        <footer className="border-t border-stroke pb-[26vh] pt-8">
+          <Meander className="max-w-[120px]" />
+          <p className="mt-4 font-mono text-[11px] text-muted">
+            © 2026 rudransh garewal · chennai, in
+          </p>
         </footer>
       </main>
     </div>
